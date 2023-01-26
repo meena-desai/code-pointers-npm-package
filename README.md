@@ -3,9 +3,9 @@
 code-pointers-js is a light weight javascript library for dealing with number array.
 
 ## Installation
-
+```bash
 npm i code-pointers-js
-
+```
 
 ## Usage
 
