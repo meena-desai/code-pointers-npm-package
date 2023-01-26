@@ -1,14 +1,48 @@
-function collection(input){
-    const arr = [...input]
-    return{
-        max: function(){
-            return Math.max(...arr)
+const collection = (input) => {
+    const arr = [...input];
+    return {
+        // runningTotal: function () { return arr.reduce((a, b) => [...a, (a.at(-1) || 0) + b], []) },
+        push: function (item) {
+            return arr.push(item)
         },
-        min: function(){
-            return Math.min(...arr)
+        data: function () { return arr },
+        avg: function () { return arr.reduce((a, b) => a + b, 0) / arr.length },
+        sum: function () { return arr.reduce((a, b) => a + b, 0) },
+        min: function () { return Math.min(...arr) },
+        max: function () { return Math.max(...arr) },
+        even: function () {
+            return arr.filter(f => f % 2 === 0)
+        },
+        odd: function () {
+            return arr.filter(f => f % 2 !== 0)
+        },
+        unique: function () { return Array.from(new Set([...arr])) },
+        moveToFirst: function (fn) {
+            return arr.reduce((a, b) => fn(b) ? [[...a[0], b], [...a[1]]] : [[...a[0]], [...a[1], b]], [[], []]).flat()
+        },
+        secondMax: function () {
+            return arr.reduce((a, b) => b > a.t ? { t: b, s: a.t > a.s ? a.t : a.s } : b > a.s && b !== a.t ? { t: a.t, s: b } : { ...a }, { t: -Number.MAX_VALUE, s: -Number.MAX_VALUE }).s
+        },
+        secondMin: function () {
+            return arr.reduce((a, b) => b < a.t ? { t: b, s: a.t < a.s ? a.t : a.s } : b < a.s && b !== a.t ? { t: a.t, s: b } : { ...a }, { t: Number.MAX_VALUE, s: Number.MAX_VALUE }).s
+        },
+        asc: function () {
+            return [...arr].sort((a, b) => a - b)
+        },
+        desc: function () {
+            return [...arr].sort((a, b) => b - a)
+        },
+        merge: function (input) {
+            if (Array.isArray(input)) {
+                return arr.push(...input)
+            } else {
+                throw new Error('input is not an array')
+            }
+        },
+        shuffle: function () {
+            return [...arr].sort(() => Math.random() - 0.5)
         }
     }
 }
-
 module.exports = collection
 
