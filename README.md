@@ -38,6 +38,14 @@ test.secondMin() // 22
 test.asc() // [ 10,  22, 25, 33, 44, 66,  66, 77, 78, 78, 99, 125]
 // Desc: 
 test.desc() // [ 125, 99, 78, 78, 77,  66, 66, 44, 33, 25,  22, 10]
+// Duplicate
+test.duplicate() // [78, 66]
+// Running Total
+test.runningTotal() // [33,  99, 177, 202, 280, 290, 312, 356, 422, 499, 598, 723]
+// Group By
+test.groupBy((i) => i < 40) //  { yes: [ 33, 25, 10, 22 ], no: [ 66, 78, 78,  44, 66, 77, 99, 125] }
+// Replace All With
+test.replaceAllWith((i) => i % 11 === 0, 0) // [ 0, 0, 78, 25, 78, 10, 0,  0,  0,  0, 0, 125]
 // Merge: 
 test.merge([11,30,44])) // 12+3 = 15 items
 // Shuffle: 

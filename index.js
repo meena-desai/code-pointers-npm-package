@@ -1,7 +1,7 @@
 const collection = (input) => {
     const arr = [...input];
     return {
-        // runningTotal: function () { return arr.reduce((a, b) => [...a, (a.at(-1) || 0) + b], []) },
+        runningTotal: function () { return arr.reduce((a, b) => [...a, (a.pop() || 0) + b], []) },
         push: function (item) {
             return arr.push(item)
         },
@@ -41,6 +41,15 @@ const collection = (input) => {
         },
         shuffle: function () {
             return [...arr].sort(() => Math.random() - 0.5)
+        },
+        duplicate: function () {
+            return Array.from(new Set(arr.reduce((a, b, i, arr) => arr.indexOf(b) !== i ? [...a, b] : [...a], [])))
+        },
+        replaceAllWith: function (fn, r = 0) {
+            return arr.reduce((a, b) => fn(b) ? [...a, r] : [...a, b], [])
+        },
+        groupBy: function (fn) {
+            return arr.reduce((a, b) => fn(b) ? { yes: [...a.yes, b], no: a.no } : { yes: a.yes, no: [...a.no, b] }, { yes: [], no: [] })
         }
     }
 }

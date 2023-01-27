@@ -1,7 +1,7 @@
 {
   "name": "code-pointers-js",
-  "version": "1.0.2",
-  "description": "Number Array",
+  "version": "1.0.3",
+  "description": "Number array utility library",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,10 +12,11 @@
   },
   "keywords": [
     "Number",
-    "Array"
+    "Array",
+    "Utils"
   ],
   "author": "Somnath Desai",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/meena-desai/code-pointers-npm-package/issues"
   },
